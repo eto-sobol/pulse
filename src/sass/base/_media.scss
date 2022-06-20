@@ -1,6 +1,6 @@
 @media ( max-width: 1200px ) {
     .container {
-        max-width: 900px; 
+        max-width: 920px; 
     }
 }
 
@@ -45,6 +45,12 @@
             font-size: 16px;
             line-height: 25px;
         }
+        &_mini {
+            width: 135px;
+            height: 44px;
+            font-size: 14px;
+            line-height: 44px;
+        }
     }
     .benefits {
         padding: 63px 0 55px 0;
@@ -86,6 +92,20 @@
             text-align: center;
         }
     }
+    .catalog {
+        &__content {
+            margin-top: 60px;
+            display: none;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            &_active {
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: wrap;
+            }
+        }
+    }
+    
 }
 
 @media ( max-width: 767px ) {
@@ -148,6 +168,38 @@
             margin-top: 15px;
             line-height: 28px;
             font-size: 18px;
+        }
+    }
+    .carousel {
+        &__inner {
+            position: relative;
+            width: 550px;
+            margin: 0 auto;
+            img {
+                width: 550px;
+            }
+        }
+    }
+    .catalog {
+        &__tab {
+            font-size: 14px;
+            line-height: 48px;
+        }
+    }
+    .reviews {
+        &__item {
+            flex-direction: column;
+            align-items: center;
+        }
+        &__text {
+            margin-left: 0;
+            margin-top: 30px;
+            text-align: center;
+        }
+    }
+    .footer {
+        &__info {
+            width: 300px;
         }
     }
 }
@@ -219,6 +271,15 @@
             font-size: 14px;
             line-height: 25px;
         }
+        &_mini {
+            width: 135px;
+            height: 44px;
+            font-size: 14px;
+            line-height: 44px;
+        }
+        &_modal {
+            width: 250px;
+        }
     }
     .benefits {
         &__wrapper {
@@ -250,5 +311,40 @@
     .consultation {
         min-height: 680px;
         padding: 70px 0 62px 0;
+    }
+    .carousel {
+        &__inner {
+            position: relative;
+            width: 300px;
+            margin: 0 auto;
+            img {
+                width: 300px;
+            }
+        }
+    }
+    .catalog {
+        &__tabs {
+            margin-top: 26px;
+            flex-wrap: wrap;
+            align-content: space-between;
+        }
+        &__tab {
+            width: 140px;
+            font-size: 12px;
+            line-height: 48px;
+            margin-top: 10px;
+        }
+        &__content {
+            margin-top: 40px;
+        }
+    }
+    .modal {
+        width: 290px;
+        padding: 35px 15px 40px 15px;
+    }
+    .feed-form {
+        &_modal {
+            width: 250px;
+        }
     }
 }

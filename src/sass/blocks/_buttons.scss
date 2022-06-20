@@ -9,6 +9,7 @@
     text-align: center;
     text-transform: uppercase;
     color: #FFFFFF;
+    cursor: pointer;
     &:hover {
       background: #FFFFFF; 
       color: $main_color;
@@ -25,5 +26,15 @@
       height: 58px;
       font-size: 16px;
       line-height: 25px;
+      margin-top: 10px;
+    }
+    &_mini {
+      width: 135px;
+      height: 44px;
+      font-size: 14px;
+      line-height: 44px;
+    }
+    &_modal {
+      margin-top: 8.5px;
     }
 }
