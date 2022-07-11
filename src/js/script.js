@@ -1,18 +1,16 @@
 $(document).ready(function () {
     $('.carousel__inner').slick({
         speed: 1200,
-        arrows: true,
-        infinite: true,
-        prevArrow: '<button type="button" class="slick-prev"><img src="../icons/left.svg"></button>',
-        nextArrow: '<button type="button" class="slick-next"><img src="../icons/right.svg"></button>',
+        adaptiveHeight: true,
+        prevArrow: '<button type="button" class="slick-prev"><img src="icons/left.svg"></button>',
+        nextArrow: '<button type="button" class="slick-next"><img src="icons/right.svg"></button>',
         responsive: [{
             breakpoint: 992,
             settings: {
                 dots: true,
                 arrows: false
             }
-        }, ]
-
+        }]
     });
 
     $('ul.catalog__tabs').on('click', 'li:not(.catalog__tab_active)', function () {
@@ -39,20 +37,15 @@ $(document).ready(function () {
     $('[data-modal=consultation]').on('click', function () {
         $('.overlay, #consultation').fadeIn('slow');
     });
-
     $('.modal__close').on('click', function () {
-        $('.overlay, #consultation').fadeOut('slow');
+        $('.overlay, #consultation, #thanks, #order').fadeOut('slow');
     });
 
     $('.button_mini').each(function (i) {
         $(this).on('click', function () {
             $('#order .modal__descr').text($('.catalog-item__subtitle').eq(i).text());
             $('.overlay, #order').fadeIn('slow');
-        });
-    });
-
-    $('.modal__close').on('click', function () {
-        $('.overlay, #order').fadeOut('slow');
+        })
     });
 
     function validateForms(form) {
@@ -60,7 +53,7 @@ $(document).ready(function () {
             rules: {
                 name: {
                     required: true,
-                    minlenght: 2
+                    minlength: 2
                 },
                 phone: "required",
                 email: {
@@ -70,13 +63,13 @@ $(document).ready(function () {
             },
             messages: {
                 name: {
-                    required: "Пожалуйства, введите ваше имя",
-                    minlength: jQuery.validator.format("Имя должно быть больше {1} символа!")
+                    required: "Пожалуйста, введите свое имя",
+                    minlength: jQuery.validator.format("Введите {0} символа!")
                 },
-                phone: "Пожалуйста, введите ваш номер телефона",
+                phone: "Пожалуйста, введите свой номер телефона",
                 email: {
-                    required: "Нам нужен ваш e-mail адрес, чтобы связаться с вами",
-                    email: "Ваш e-mail адрес должен быть в формате: name@domain.com"
+                    required: "Пожалуйста, введите свою почту",
+                    email: "Неправильно введен адрес почты"
                 }
             }
         });
@@ -85,4 +78,44 @@ $(document).ready(function () {
     validateForms('#consultation-form');
     validateForms('#consultation form');
     validateForms('#order form');
+
+    $('input[name=phone]').mask("+7 (999) 999-99-99");
+
+    $('form').submit(function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "mailer/smart.php",
+            data: $(this).serialize()
+        }).done(function () {
+            $(this).find("input").val("");
+            $('#consultation, #order').fadeOut();
+            $('.overlay, #thanks').fadeIn('slow');
+
+            $('form').trigger('reset');
+        });
+        return false;
+    });
+
+    // Smooth scroll and pageup
+
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 1600) {
+            $('.pageup').fadeIn();
+        } else {
+            $('.pageup').fadeOut();
+        }
+    });
+
+    $("a[href=#up]").click(function () {
+
+        const _href = $(this).attr("href");
+
+        $("html, body").animate({
+            scrollTop: $(_href).offset().top + "px"
+        });
+        return false;
+    });
+
+    new WOW().init();
 });
